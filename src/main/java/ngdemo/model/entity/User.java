@@ -7,27 +7,43 @@ import java.util.Date;
  * Created by Daniel on 2015-10-14.
  */
 @Entity
-@Table(name = "tblplayer")
-public class Player {
+@Table(name = "tbluser")
+public class User {
 
     @Id
-    @Column(name="id")
+    @Column(name = "id")
     private String id;
 
-    @Column(name="username")
+    @Column(name = "username")
     private String username;
 
-    @Column(name="password")
+    @Column(name = "password")
     private String password;
 
-    @Column(name="SYS_UPDATE_DATE")
+    @Column(name = "last_login")
     private Date lastLogin;
 
-    public Player(String id, String username, String password, Date lastLogin) {
+    @Column(name = "enabled")
+    private Boolean enabled;
+
+    public User() {
+
+    }
+
+    public User(String id, String username, String password, Date lastLogin, Boolean enabled) {
         this.id = id;
         this.username = username;
         this.password = password;
         this.lastLogin = lastLogin;
+        this.enabled = enabled;
+    }
+
+    public Boolean getEnabled() {
+        return enabled;
+    }
+
+    public void setEnabled(Boolean enabled) {
+        this.enabled = enabled;
     }
 
     public String getId() {

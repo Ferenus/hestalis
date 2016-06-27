@@ -1,10 +1,10 @@
 package ngdemo.rest;
 
-import ngdemo.dao.PlayerDAO;
-import ngdemo.model.entity.Player;
+import ngdemo.dao.UserDAO;
+import ngdemo.model.entity.User;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.context.ApplicationContext;
-import org.springframework.stereotype.Component;
+import org.springframework.security.crypto.bcrypt.BCrypt;
+import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Controller;
 
 import javax.ws.rs.*;
@@ -12,7 +12,6 @@ import javax.ws.rs.core.Context;
 import javax.ws.rs.core.MediaType;
 import javax.ws.rs.core.Response;
 import javax.ws.rs.core.UriInfo;
-import java.util.Arrays;
 import java.util.Date;
 
 
@@ -21,7 +20,10 @@ import java.util.Date;
 public class LoginRestService {
 
     @Autowired
-    private PlayerDAO playerDAO;
+    private UserDAO userDAO;
+
+    @Autowired
+    private PasswordEncoder passwordEncoder;
 
 /*    @GET
     @Produces(MediaType.APPLICATION_JSON)
@@ -54,10 +56,10 @@ public class LoginRestService {
     private void authenticate(String username, String password) throws Exception {
         // Authenticate against a database, LDAP, file or whatever
         // Throw an Exception if the credentials are invalid
-        Player player = playerDAO.getPlayerByUsername(username);
-        if (player != null && player.getPassword().equals(password)) {
-            //encode password in if
-            player.setLastLogin(new Date());
+        User user = userDAO.getUserByUsername(username);
+
+        if (user != null && BCrypt.checkpw(password, user.getPassword())) {
+            user.setLastLogin(new Date());
         }
         else {
             throw new Exception("Invalid login!");

@@ -1,6 +1,6 @@
 package ngdemo.dao;
 
-import ngdemo.model.entity.Player;
+import ngdemo.model.entity.User;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -14,17 +14,22 @@ import java.util.List;
  */
 @Repository
 @SuppressWarnings({"unchecked", "rawtypes"})
-public class PlayerDAO {
+public class UserDAO {
     @Autowired
     private SessionFactory sessionFactory;
 
     @Transactional
-    public Player getPlayerByUsername(String username) {
+    public User getUserByUsername(String username) {
         Session session = sessionFactory.getCurrentSession();
-        List players = session.createQuery("from tblplayer where username='" + username +"'").list();
-        if (!players.isEmpty()) {
-            return (Player) players.get(0);
+        List players = session.createQuery("from User where username='" + username +"'").list();
+        if (players.size()==1) {
+            return (User) players.get(0);
         }
         return null;
+    }
+
+    @Transactional
+    public void setUser (User user) {
+
     }
 }
