@@ -1,4 +1,4 @@
-package ngdemo.generator;
+package com.hestalis.generator;
 
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 

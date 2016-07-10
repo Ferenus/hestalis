@@ -1,6 +1,7 @@
-package ngdemo.dao;
+package com.hestalis.dao;
 
-import ngdemo.model.entity.User;
+import com.hestalis.model.entity.User;
+import org.hibernate.Query;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -30,6 +31,14 @@ public class UserDAO {
 
     @Transactional
     public void setUser (User user) {
-
+        Session session = sessionFactory.getCurrentSession();
+        Query query = session.createQuery("update User set username=:username, password=:password, enabled=:enabled, last_login=:last_login where id=:id");
+        query.setInteger("id", user.getId());
+        query.setString("username",user.getUsername());
+        query.setString("password",user.getPassword());
+        query.setBoolean("enabled", user.getEnabled());
+        query.setDate("last_login", user.getLastLogin());
+        query.executeUpdate();
+        System.out.println("[UPDATE] User " + user.getUsername() + " is updated.");
     }
 }

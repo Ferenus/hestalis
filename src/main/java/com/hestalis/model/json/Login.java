@@ -1,4 +1,4 @@
-package ngdemo.model.json;
+package com.hestalis.model.json;
 
 import javax.xml.bind.annotation.XmlRootElement;
 

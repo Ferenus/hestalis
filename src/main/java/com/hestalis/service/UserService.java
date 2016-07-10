@@ -1,6 +1,6 @@
-package ngdemo.service;
+package com.hestalis.service;
 
-import ngdemo.model.json.Login;
+import com.hestalis.model.json.Login;
 
 public class UserService {
 

@@ -1,4 +1,4 @@
-package ngdemo.model.entity;
+package com.hestalis.model.entity;
 
 import javax.persistence.*;
 import java.util.Date;
@@ -12,7 +12,7 @@ public class User {
 
     @Id
     @Column(name = "id")
-    private String id;
+    private Integer id;
 
     @Column(name = "username")
     private String username;
@@ -30,7 +30,7 @@ public class User {
 
     }
 
-    public User(String id, String username, String password, Date lastLogin, Boolean enabled) {
+    public User(Integer id, String username, String password, Date lastLogin, Boolean enabled) {
         this.id = id;
         this.username = username;
         this.password = password;
@@ -46,11 +46,11 @@ public class User {
         this.enabled = enabled;
     }
 
-    public String getId() {
+    public Integer getId() {
         return id;
     }
 
-    public void setId(String id) {
+    public void setId(Integer id) {
         this.id = id;
     }
 

@@ -1,9 +1,9 @@
-//'use strict';
+'use strict';
 
 /* Controllers */
 
 
-var app = angular.module('ngdemo.controllers', []);
+var app = angular.module('login.controllers', []);
 
 
 // Clear browser cache (in development mode)

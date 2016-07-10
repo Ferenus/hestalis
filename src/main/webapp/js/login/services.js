@@ -2,7 +2,7 @@
 
 /* Services */
 
-var services = angular.module('ngdemo.services', ['ngResource']);
+var services = angular.module('login.services', ['ngResource']);
 
 services.factory('UserFactory', function ($resource) {
     return $resource('/ngdemo/rest/users', {}, {

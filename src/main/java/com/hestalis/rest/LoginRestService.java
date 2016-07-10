@@ -1,7 +1,7 @@
-package ngdemo.rest;
+package com.hestalis.rest;
 
-import ngdemo.dao.UserDAO;
-import ngdemo.model.entity.User;
+import com.hestalis.dao.UserDAO;
+import com.hestalis.model.entity.User;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.crypto.bcrypt.BCrypt;
 import org.springframework.security.crypto.password.PasswordEncoder;
@@ -60,6 +60,7 @@ public class LoginRestService {
 
         if (user != null && BCrypt.checkpw(password, user.getPassword())) {
             user.setLastLogin(new Date());
+            userDAO.setUser(user);
         }
         else {
             throw new Exception("Invalid login!");
