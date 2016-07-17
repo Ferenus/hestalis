@@ -1,5 +1,6 @@
-package com.hestalis.dao;
+package com.hestalis.dao.impl;
 
+import com.hestalis.dao.IUserDAO;
 import com.hestalis.model.entity.User;
 import org.hibernate.Query;
 import org.hibernate.Session;
@@ -15,10 +16,11 @@ import java.util.List;
  */
 @Repository
 @SuppressWarnings({"unchecked", "rawtypes"})
-public class UserDAO {
+public class UserDAO implements IUserDAO {
     @Autowired
     private SessionFactory sessionFactory;
 
+    @Override
     @Transactional
     public User getUserByUsername(String username) {
         Session session = sessionFactory.getCurrentSession();
@@ -29,6 +31,7 @@ public class UserDAO {
         return null;
     }
 
+    @Override
     @Transactional
     public void setUser (User user) {
         Session session = sessionFactory.getCurrentSession();

@@ -14,7 +14,7 @@ app.run(function ($rootScope, $templateCache) {
     });
 });
 
-app.controller('MyCtrl1', ['$scope', '$http', function ($scope, $http) {
+app.controller('MyCtrl1', ['$scope', '$http', '$location', function ($scope, $http, $location) {
     $scope.login = function () {
         $http({
             method:'POST',
@@ -25,7 +25,10 @@ app.controller('MyCtrl1', ['$scope', '$http', function ($scope, $http) {
             }),
             headers: { 'Content-Type' : 'application/x-www-form-urlencoded' }
         }).success(function(data){
-            console.log(' data ');
+            console.log(data);
+            $location.path('/game');
+        }).error(function(){
+            $location.path('/error');
         });
     }
 }]);

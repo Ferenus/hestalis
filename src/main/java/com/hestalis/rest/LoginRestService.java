@@ -1,6 +1,6 @@
 package com.hestalis.rest;
 
-import com.hestalis.dao.UserDAO;
+import com.hestalis.dao.IUserDAO;
 import com.hestalis.model.entity.User;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.crypto.bcrypt.BCrypt;
@@ -20,7 +20,7 @@ import java.util.Date;
 public class LoginRestService {
 
     @Autowired
-    private UserDAO userDAO;
+    private IUserDAO userDAO;
 
     @Autowired
     private PasswordEncoder passwordEncoder;
