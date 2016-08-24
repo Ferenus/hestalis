@@ -10,7 +10,7 @@
     <display-name>Restful Web Application</display-name>
 
     <servlet>
-        <servlet-name>jersey-serlvet</servlet-name>
+        <servlet-name>jersey-servlet</servlet-name>
 
         <servlet-class>
             com.sun.jersey.spi.spring.container.servlet.SpringServlet
@@ -29,9 +29,19 @@
         <load-on-startup>1</load-on-startup>
     </servlet>
 
+    <servlet>
+        <servlet-name>MainPage</servlet-name>
+        <jsp-file>/index.html</jsp-file>
+    </servlet>
+
     <servlet-mapping>
-        <servlet-name>jersey-serlvet</servlet-name>
+        <servlet-name>jersey-servlet</servlet-name>
         <url-pattern>/rest/*</url-pattern>
+    </servlet-mapping>
+
+    <servlet-mapping>
+        <servlet-name>MainPage</servlet-name>
+        <url-pattern>/*</url-pattern>
     </servlet-mapping>
 
     <context-param>
